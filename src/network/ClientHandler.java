@@ -23,16 +23,16 @@ public class ClientHandler extends Listener {
             client.start();
             client.connect(5000,ip, tcpPort, udpPort);
             client.addListener(new ClientHandler());
-            Main.g.taChat.append("["+ LocalTime.now().format(dtf) + " Connected as Client]\n");
+            Main.gui.taChat.append("["+ LocalTime.now().format(dtf) + " Connected as Client]\n");
             Main.isConnected = true;
-            Main.g.btnHost.setEnabled(false);
-            Main.g.btnClient.setEnabled(false);
-            Main.g.btnDisconnect.setEnabled(true);
+            Main.gui.btnHost.setEnabled(false);
+            Main.gui.btnClient.setEnabled(false);
+            Main.gui.btnDisconnect.setEnabled(true);
         } catch (IOException e) {
-            Main.g.taChat.append("["+ LocalTime.now().format(dtf) + " No Host found]\n");
-            Main.g.btnHost.setEnabled(true);
-            Main.g.btnClient.setEnabled(true);
-            Main.g.btnDisconnect.setEnabled(false);
+            Main.gui.taChat.append("["+ LocalTime.now().format(dtf) + " No Host found]\n");
+            Main.gui.btnHost.setEnabled(true);
+            Main.gui.btnClient.setEnabled(true);
+            Main.gui.btnDisconnect.setEnabled(false);
             e.printStackTrace();
 
         }
@@ -41,7 +41,7 @@ public class ClientHandler extends Listener {
     public static void send(Object o){
         if(o instanceof Message){
             Message m = (Message)o;
-            Main.g.taChat.append(m.getMessage());
+            Main.gui.taChat.append(m.getMessage());
             client.sendTCP(m);
         }
     }
@@ -49,12 +49,12 @@ public class ClientHandler extends Listener {
     public void received(Connection c, Object o){
         if(o instanceof Message){
             Message m = (Message)o;
-            Main.g.taChat.append(m.getMessage());
+            Main.gui.taChat.append(m.getMessage());
         }
     }
 
     public static void close(){
-        Main.g.taChat.append("[Disconnected]\n");
+        Main.gui.taChat.append("[Disconnected]\n");
         client.close();
     }
 }
