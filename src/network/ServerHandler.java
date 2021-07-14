@@ -22,7 +22,7 @@ public class ServerHandler extends Listener {
             server.bind(tcpPort, udpPort);
             server.start();
             server.addListener(new ServerHandler());
-            Main.g.taChat.append("["+ LocalTime.now().format(dtf) + " Connected as Host]\n");
+            Main.gui.taChat.append("["+ LocalTime.now().format(dtf) + " Connected as Host]\n");
             Main.isConnected = true;
         } catch (IOException e) {
             e.printStackTrace();
@@ -32,30 +32,30 @@ public class ServerHandler extends Listener {
     public static void send(Object o){
         if(o instanceof Message){
             Message m = (Message) o;
-            Main.g.taChat.append(m.getMessage());
+            Main.gui.taChat.append(m.getMessage());
             server.sendToAllTCP(m);
         }
 
     }
 
     public void connected(Connection c){
-        Main.g.taChat.append("["+c.getRemoteAddressTCP().getHostString()+ " Connected]\n");
+        Main.gui.taChat.append("["+c.getRemoteAddressTCP().getHostString()+ " Connected]\n");
     }
 
     public void received(Connection c, Object o){
         if(o instanceof Message){
             Message m = (Message) o;
-            Main.g.taChat.append(m.getMessage());
+            Main.gui.taChat.append(m.getMessage());
             server.sendToAllExceptTCP(c.getID(), m);
         }
     }
 
     public void disconnected(Connection c){
-        Main.g.taChat.append("[Connection "+c.getID() + " Disconnected]\n");
+        Main.gui.taChat.append("[Connection "+c.getID() + " Disconnected]\n");
     }
 
     public static void close(){
-        Main.g.taChat.append("[Disconnected]\n");
+        Main.gui.taChat.append("[Disconnected]\n");
     }
 
 }
