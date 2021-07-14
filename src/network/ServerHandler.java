@@ -24,6 +24,8 @@ public class ServerHandler extends Listener {
             server.addListener(new ServerHandler());
             Main.gui.taChat.append("["+ LocalTime.now().format(dtf) + " Connected as Host]\n");
             Main.isConnected = true;
+            Main.gui.btnHost.setEnabled(false);
+            Main.gui.btnClient.setEnabled(false);
         } catch (IOException e) {
             e.printStackTrace();
         }
