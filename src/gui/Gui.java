@@ -6,7 +6,6 @@ import network.ClientHandler;
 import network.ServerHandler;
 
 import javax.swing.*;
-import java.awt.*;
 import java.time.LocalTime;
 
 public class Gui {
@@ -14,7 +13,7 @@ public class Gui {
     JPanel content;
     public JButton btnHost, btnClient, btnSend, btnDisconnect;
     public JTextField tfInput, tfName, tfIP;
-    JScrollPane sp;
+    JScrollPane scrollPane;
     public JTextArea taChat;
     int width = 435, height = 580;
 
@@ -118,10 +117,10 @@ public class Gui {
         taChat = new JTextArea();
         taChat.setVisible(true);
 
-        sp = new JScrollPane(taChat);
-        sp.setBounds(10,80,400,400);
-        sp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        content.add(sp);
+        scrollPane = new JScrollPane(taChat);
+        scrollPane.setBounds(10,80,400,400);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        content.add(scrollPane);
 
         jf.setContentPane(content);
         jf.setVisible(true);
